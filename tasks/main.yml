@@ -24,6 +24,7 @@
   register: chruby_untarred
 
 - name: Run chruby install target
+  sudo: yes
   command: make install
            chdir="/tmp/chruby-{{ chruby_version }}"
   when: chruby_untarred | changed
@@ -32,6 +33,7 @@
   # Register autoload script
   #
 - name: Deploy chruby autoload script
+  sudo: yes
   copy: src=chruby.sh
         dest=/etc/profile.d/chruby.sh
 
